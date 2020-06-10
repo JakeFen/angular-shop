@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +17,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
+    SignUpComponent,
+    LoginComponent,
   ],
   imports: [
-    BrowserModule,
-    NgbModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
@@ -41,10 +44,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       { path: 'order-success', component: OrderSuccessComponent },
       { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'sign-up', component: SignUpComponent },
       { path: 'admin/products', component: AdminProductsComponent },
       { path: 'admin/orders', component: AdminOrdersComponent },
       { path: '**', component: NotFoundComponent },
     ]),
+    BrowserModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
