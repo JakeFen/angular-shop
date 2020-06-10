@@ -26,7 +26,16 @@ export class LoginComponent implements OnInit {
     let password = controls.loginPassword.value;
 
     this.userService.findUser(username, password).subscribe((response) => {
-      console.log(response);
+      console.log(response['fullname']);
+
+      let currentUser = {
+        fullname: response['fullname'],
+        username: response['username'],
+      };
+      if (response) {
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        this.loginForm.reset();
+      } else console.log(currentUser);
     });
   }
 }

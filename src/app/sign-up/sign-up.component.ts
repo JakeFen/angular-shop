@@ -23,12 +23,14 @@ export class SignUpComponent implements OnInit {
   signUp(form) {
     let controls = form.controls;
     let user = {
-      fullName: controls.fullName.value,
+      fullname: controls.fullName.value,
       username: controls.signUpUsername.value,
       password: controls.signUpPassword.value,
     };
 
+    console.log(user);
     this.userService.createUser(user).subscribe((response) => {
+      this.signUpForm.reset();
       console.log(response);
     });
   }
