@@ -41,8 +41,13 @@
         >
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
-          <a class="dropdown-item" routerLink="/admin/orders">Manager Orders</a>
-          <a class="dropdown-item" routerLink="/admin/products"
+          <a *ngIf="user.admin" class="dropdown-item" routerLink="/admin/orders"
+            >Manager Orders</a
+          >
+          <a
+            *ngIf="user.admin"
+            class="dropdown-item"
+            routerLink="/admin/products"
             >Manage Products</a
           >
           <a class="dropdown-item" (click)="logout()">Log Out</a>

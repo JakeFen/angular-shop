@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
         id: response['id'],
         fullname: response['fullname'],
         username: response['username'],
+        admin: response['admin'],
       };
       if (response) {
         let returnUrl =

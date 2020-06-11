@@ -12,6 +12,7 @@ module.exports = function (app) {
       fullname: req.body.fullname,
       username: req.body.username,
       password: req.body.password,
+      admin: false,
     }).then(function (dbAuthor) {
       res.json(dbAuthor);
     });

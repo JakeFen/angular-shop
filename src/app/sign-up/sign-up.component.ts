@@ -39,6 +39,7 @@ export class SignUpComponent implements OnInit {
           id: response['id'],
           fullname: response['fullname'],
           username: response['username'],
+          admin: response['admin'],
         };
         this.router.navigateByUrl('/');
         localStorage.setItem('user', JSON.stringify(currentUser));

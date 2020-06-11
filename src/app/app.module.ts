@@ -18,8 +18,9 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -67,12 +68,12 @@ import { UserService } from './services/user.service';
       {
         path: 'admin/products',
         component: AdminProductsComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AdminAuthGuardService],
       },
       {
         path: 'admin/orders',
         component: AdminOrdersComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AdminAuthGuardService],
       },
       { path: '**', component: NotFoundComponent },
     ]),
@@ -82,7 +83,7 @@ import { UserService } from './services/user.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthGuardService, UserService],
+  providers: [AuthGuardService, AdminAuthGuardService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
