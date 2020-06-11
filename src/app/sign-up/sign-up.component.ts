@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,11 @@ import { UserService } from '../services/user.service';
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
 
-  constructor(fb: FormBuilder, private userService: UserService) {
+  constructor(
+    fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.signUpForm = fb.group({
       fullName: ['', Validators.required],
       signUpUsername: ['', Validators.required],
@@ -28,10 +33,17 @@ export class SignUpComponent implements OnInit {
       password: controls.signUpPassword.value,
     };
 
-    console.log(user);
     this.userService.createUser(user).subscribe((response) => {
-      this.signUpForm.reset();
-      console.log(response);
+      if (response) {
+        const currentUser = {
+          id: response['id'],
+          fullname: response['fullname'],
+          username: response['username'],
+        };
+        this.router.navigateByUrl('/');
+        localStorage.setItem('user', JSON.stringify(currentUser));
+        this.signUpForm.reset();
+      }
     });
   }
 }

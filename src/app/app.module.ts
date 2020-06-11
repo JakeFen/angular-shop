@@ -18,6 +18,8 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthGuardService } from './auth-guard.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -39,14 +41,39 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
-      { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'check-out', component: CheckOutComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
-      { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
       { path: 'sign-up', component: SignUpComponent },
-      { path: 'admin/products', component: AdminProductsComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
+      {
+        path: 'shopping-cart',
+        component: ShoppingCartComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'check-out',
+        component: CheckOutComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'order-success',
+        component: OrderSuccessComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'my/orders',
+        component: MyOrdersComponent,
+        canActivate: [AuthGuardService],
+      },
+
+      {
+        path: 'admin/products',
+        component: AdminProductsComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+        canActivate: [AuthGuardService],
+      },
       { path: '**', component: NotFoundComponent },
     ]),
     BrowserModule,
@@ -55,7 +82,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuardService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
