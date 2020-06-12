@@ -8,7 +8,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   createUser(user) {
-    return this.http.post('/api/newUser', user);
+    return this.http.post('/api/new-user', user);
   }
 
   findUser(username, password) {

@@ -23,6 +23,7 @@ app.get("*", function (req, res) {
 // /dist/oshop/index.html
 
 require("./server-side/routes/user-routes.js")(app);
+require("./server-side/routes/product-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

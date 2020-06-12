@@ -7,12 +7,12 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/api/newUser", function (req, res) {
+  app.post("/api/new-user", function (req, res) {
     db.User.create({
       fullname: req.body.fullname,
       username: req.body.username,
       password: req.body.password,
-      admin: false,
+      admin: true,
     }).then(function (dbAuthor) {
       res.json(dbAuthor);
     });
