@@ -9,12 +9,7 @@ export class AdminAuthGuardService implements CanActivate {
 
   canActivate(route, state: RouterStateSnapshot) {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user['admin']) {
-      console.log('User admin true');
-      return true;
-    } else {
-      console.log('User admin false');
-      return false;
-    }
+    if (user['admin']) return true;
+    else return false;
   }
 }
