@@ -24,6 +24,8 @@ app.get("*", function (req, res) {
 
 require("./server-side/routes/user-routes.js")(app);
 require("./server-side/routes/product-routes.js")(app);
+require("./server-side/routes/shopping-cart")(app);
+// require("./server-side/routes/")
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

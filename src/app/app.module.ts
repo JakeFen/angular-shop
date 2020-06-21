@@ -22,6 +22,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -39,10 +42,12 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     SignUpComponent,
     LoginComponent,
     ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
   ],
   imports: [
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'login', component: LoginComponent },
       { path: 'sign-up', component: SignUpComponent },
@@ -94,7 +99,12 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthGuardService, AdminAuthGuardService, UserService],
+  providers: [
+    AuthGuardService,
+    AdminAuthGuardService,
+    UserService,
+    ShoppingCartService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

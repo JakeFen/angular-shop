@@ -11,7 +11,6 @@ import { take } from 'rxjs/operators';
 })
 export class ProductFormComponent implements OnInit {
   newProductForm: FormGroup;
-  product = {};
   id;
 
   constructor(

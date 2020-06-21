@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get(`/api/products/${id}`);
   }
 
+  findCategory(category) {
+    return this.http.get(`/api/products/category/${category}`);
+  }
+
   getAll() {
     return this.http.get('/api/products');
   }

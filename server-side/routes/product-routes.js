@@ -11,18 +11,18 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/products/:category", function (req, res) {
+  app.get("/api/products", function (req, res) {
+    db.Product.findAll({}).then(function (dbProducts) {
+      res.json(dbProducts);
+    });
+  });
+
+  app.get("/api/products/category/:category", function (req, res) {
     db.Product.findAll({
       where: {
         category: req.params.category,
       },
     }).then(function (dbProducts) {
-      res.json(dbProducts);
-    });
-  });
-
-  app.get("/api/products", function (req, res) {
-    db.Product.findAll({}).then(function (dbProducts) {
       res.json(dbProducts);
     });
   });
