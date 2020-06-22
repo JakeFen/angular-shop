@@ -11,13 +11,14 @@ export class ProductCardComponent {
 
   constructor(private cartService: ShoppingCartService) {}
 
-  // addToCart(product) {
-  //   let cartId = localStorage.getItem('cartId');
-  //   if (!cartId) {
-  //     this.cartService.create(product).subscribe((response) => {
-  //       localStorage.setItem('cartId', response['id']);
-  //       console.log(response);
-  //     });
-  //   }
-  // }
+  addToCart(product) {
+    this.cartService.addToCart(product);
+    // let cartId = localStorage.getItem('cartId');
+    // if (!cartId) {
+    //   this.cartService.create(product).subscribe((response) => {
+    //     localStorage.setItem('cartId', response['id']);
+    //     console.log(response);
+    //   });
+    // }
+  }
 }

@@ -18,21 +18,6 @@ module.exports = function (app) {
   app.post("/api/new/shopping-cart", function (req, res) {
     console.log("Success");
     db.ShoppingCart.create({}).then(function (response) {
-      const body = req.body;
-
-      db.CartProduct.create({
-        include: [db.ShoppingCart],
-        title: "something",
-        price: 2,
-        category: "something",
-        imageURL: "something",
-        quantity: 0,
-        productId: 4,
-        ShoppingCartId: response.id,
-      }).then(function (dbCartProduct) {
-        console.log("Cart Success");
-      });
-      console.log("Res Response");
       res.json(response);
     });
   });
