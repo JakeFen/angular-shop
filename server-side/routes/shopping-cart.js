@@ -9,6 +9,17 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/shopping-carts/:cartId", function (req, res) {
+    db.ShoppingCart.findOne({
+      include: [db.CartProduct],
+      where: {
+        id: req.params.cartId,
+      },
+    }).then(function (dbShoppingCart) {
+      res.json(dbShoppingCart);
+    });
+  });
+
   app.get("/api/cart-product", function (req, res) {
     db.CartProduct.findAll({}).then(function (dbCartProduct) {
       res.json(dbCartProduct);

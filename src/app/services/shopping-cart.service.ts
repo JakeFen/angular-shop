@@ -8,7 +8,8 @@ import { Subject } from 'rxjs';
 export class ShoppingCartService {
   constructor(private http: HttpClient) {}
 
-  private create(product) {
+  private create() {
+    let product: {};
     return this.http.post('/api/new/shopping-cart', product).toPromise();
   }
 
@@ -26,15 +27,16 @@ export class ShoppingCartService {
     );
   }
 
-  // private getCart(cartId) {
-  //   return this.http.get(`/api/shopping-cart/:${cartId}`);
-  // }
+  async getCart() {
+    let cartId = await this.getOrCreateCartId();
+    return this.http.get(`api/shopping-carts/${cartId}`);
+  }
 
-  private async getOrCreateCartId(product) {
+  private async getOrCreateCartId() {
     let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId;
     else {
-      return this.create(product).then((response) => {
+      return this.create().then((response) => {
         localStorage.setItem('cartId', response['id']);
         return response['id'];
       });
@@ -42,7 +44,7 @@ export class ShoppingCartService {
   }
 
   async addToCart(product) {
-    let cartId = await this.getOrCreateCartId(product);
+    let cartId = await this.getOrCreateCartId();
     let item = this.http.get(
       `/api/shopping-cart/${cartId}/items/${product.id}`
     );
