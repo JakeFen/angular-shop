@@ -13,12 +13,16 @@ export class ProductCardComponent {
 
   constructor(private cartService: ShoppingCartService) {}
 
-  addToCart(product) {
-    this.cartService.addToCart(product);
+  async addToCart(product) {
+    await this.cartService.addToCart(product);
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    wait(2 * 50).then(() => this.update(true));
   }
 
   update(clicked: true) {
+    console.log('clicked');
     this.onButtonClick.emit(clicked);
+    return true;
   }
 
   getQuantity() {

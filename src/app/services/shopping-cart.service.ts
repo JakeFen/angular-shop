@@ -49,18 +49,13 @@ export class ShoppingCartService {
       `/api/shopping-cart/${cartId}/items/${product.id}`
     );
     item.subscribe((response) => {
-      if (!response)
-        this.createProductId(cartId, product).subscribe((response) => {});
+      if (!response) this.createProductId(cartId, product).subscribe();
       else {
         let body = {
           quantity: response['quantity'] + 1,
         };
         let productId = product['id'];
-        this.updateCartProduct(cartId, body, productId).subscribe(
-          (response) => {
-            console.log(response);
-          }
-        );
+        this.updateCartProduct(cartId, body, productId).subscribe();
       }
     });
   }
